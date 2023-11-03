@@ -1,6 +1,8 @@
+from django.forms.models import BaseModelForm
+from django.http import HttpResponse
 from django.shortcuts import render
 from .models import PostBlog
-
+from django.views.generic import ListView, DetailView, CreateView
 
 # blogPost = [
 #     {
@@ -24,5 +26,28 @@ def home(request):
     postedBlog = PostBlog.objects.all()
     return render(request, 'blog/home.html', {"blogPost": postedBlog})
 
+class PostListView(ListView):
+    model = PostBlog
+    template_name = 'blog/home.html'
+    context_object_name = 'blogPost'
+    ordering = ['-publishDate']
+
+class PostDetailsView(DetailView):
+    model = PostBlog
+    template_name = 'blog/post_detail.html'
+
+class PostCreateView(CreateView):
+    model = PostBlog
+    fields = ['title', 'description']
+    template_name = 'blog/post_create.html'
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+
+
 def about(request):
     return render(request, 'blog/about.html', {"title":"about page"})
+
+

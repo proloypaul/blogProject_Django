@@ -2,13 +2,14 @@
         {%block content%}
             {% for blog in blogPost%}
             <article class="media content-section">
+                <img class="rounded-circle account-img" src="{{ blog.author.profile.image.url }}">
                 <div class="media-body">
                   <div class="article-metadata">
                     <a class="mr-2" href="#">{{ blog.author }}</a>
                     <small class="text-muted">{{ blog.publishDate }}</small>
                   </div>
-                  <h2><a class="article-title" href="#">{{ blog.title }}</a></h2>
-                  <p class="article-content">{{ blog.description }}</p>
+                  <h2><a class="article-title" href="{% url 'postDetails' blog.id %}">{{ blog.title }}</a></h2>
+                  <p class="article-content">{{ blog.description }}[slice(0, 50)]</p>
                 </div>
             </article>
         {% endfor%}
