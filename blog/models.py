@@ -6,7 +6,7 @@ from django.urls import reverse
 # Create your models here.
 class PostBlog(models.Model):
     creatorName = models.CharField(max_length=50)
-    # blogImg = models.ImageField()
+    # blogImage = models.ImageField(default="https://d2v9ipibika81v.cloudfront.net/uploads/sites/210/Profile-Icon.png", upload_to="blog_pics")
     title = models.CharField(max_length=200)
     description = models.TextField()
     category = models.CharField(max_length=50)
