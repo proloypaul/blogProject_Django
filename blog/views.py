@@ -39,7 +39,7 @@ class PostDetailsView(DetailView):
 
 class PostCreateView(CreateView):
     model = PostBlog
-    fields = ['title', 'description']
+    fields = ['blogImage', 'title', 'description']
     template_name = 'blog/post_create.html'
 
     def form_valid(self, form):
