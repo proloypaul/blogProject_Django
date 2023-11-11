@@ -2,6 +2,7 @@ from django.forms.models import BaseModelForm
 from django.http import HttpResponse
 from django.shortcuts import render
 from .models import PostBlog
+from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin 
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
@@ -71,6 +72,12 @@ class PostDeleteView(DeleteView):
         if self.request.user == post.author:
             return True 
         return False
+    
+
+def yourBlog(request):
+    postedBlog = PostBlog.objects.all()
+    # print("user", )
+    return render(request, 'blog/yourBlog.html', {"blogPost": postedBlog})
 
 def about(request):
     return render(request, 'blog/about.html', {"title":"about page"})

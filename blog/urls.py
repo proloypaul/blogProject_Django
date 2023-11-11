@@ -8,6 +8,7 @@ urlpatterns = [
     path('post/new', PostCreateView.as_view(), name="createPost"),
     path('post/<int:pk>/update', PostUpdateView.as_view(), name="postUpdate"),
     path('post/<int:pk>/delete', PostDeleteView.as_view(), name="postDelete"),
-    # path('', views.home, name="homePage"),
+    path('yourblog/', views.yourBlog, name="yourBlog"),
+    # path('', views.youhome, name="homePage"),
     path('about/', views.about, name="aboutPage"),
 ]

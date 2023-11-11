@@ -1,0 +1,21 @@
+{% extends "blog/base.html" %}
+        {%block content%}
+        {% for blog in blogPost%}
+            {% if 'utsha' == 'utsha' %}
+            <article class="media content-section">
+                <img class="rounded-circle account-img" src="{{ blog.author.profile.image.url }}">
+                <div class="media-body">
+                  <div class="article-metadata">
+                    <a class="mr-2" href="#">{{ blog.author }}</a>
+                    <small class="text-muted">{{ blog.publishDate }}</small>
+                    <small class="text-muted">{{ user.username }}</small>
+                    <small class="text-muted">{{ user.author }}</small>
+                  </div>
+                  <h2><a class="article-title" href="{% url 'postDetails' blog.id %}">{{ blog.title }}</a></h2>
+                  <p class="article-content">{{ blog.description|slice:'0:100' }}</p>
+                </div>
+            </article>
+            {% endif %}
+        {% endfor%}
+{%endblock%}
+
